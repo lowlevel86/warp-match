@@ -8,11 +8,14 @@ svgGridGen.py is a program that can generate grid patterns. It can be used to cr
 ![](./imgs/grid2.png)
 
 ![](./imgs/grid3.png)
-
-![](./imgs/grid4.png)
 ___
 
 Note that it is possible to animate from one seed to another by using a floating point value for the seed parameter.
 
 ![](./imgs/animate.gif)
 ___
+
+Code and small programs that help explain how the main image matching program operates will be in the Supporting_Programs folder.
+
+glDisplay contains code that can plot or draw line data to help visualize the inner workings and results of functions.
+![](./imgs/glDisplay.png)
