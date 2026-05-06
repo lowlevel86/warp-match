@@ -19,3 +19,6 @@ Code and small programs that help explain how the main image matching program op
 
 glDisplay contains code that can plot or draw line data to help visualize the inner workings and results of functions.
 ![](./imgs/glDisplay.png)
+
+svgLoader contains code that can load SVG files.
+![](./imgs/loadedSvg.png)
