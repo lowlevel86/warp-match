@@ -90,6 +90,12 @@ void setPlotData(float *edges, int edgeCnt, float r, float g, float b, float a, 
 
 void setWindowDimensions(int width, int height)
 {
+	if (width <= 0)
+	return;
+	
+	if (height <= 0)
+	return;
+	
 	WINDOW_WIDTH = width;
 	WINDOW_HEIGHT = height;
 }
@@ -210,19 +216,39 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
+	if (!width)
+	return;
+	
+	if (!height)
+	return;
+	
     glViewport(0, 0, width, height);
-
-	if (width > height)
+	
+	// keep plot location as the window is resized
+	if ((WINDOW_WIDTH < WINDOW_HEIGHT) && (width > height))
 	{
-		PLOT_LOC_X *= (double)height / WINDOW_HEIGHT;
-		PLOT_LOC_Y *= (double)height / WINDOW_HEIGHT;
+		PLOT_LOC_X *= (double)height / WINDOW_WIDTH;
+		PLOT_LOC_Y *= (double)height / WINDOW_WIDTH;
+	}
+	else if ((WINDOW_WIDTH > WINDOW_HEIGHT) && (width < height))
+	{
+		PLOT_LOC_X *= (double)width / WINDOW_HEIGHT;
+		PLOT_LOC_Y *= (double)width / WINDOW_HEIGHT;
 	}
 	else
 	{
-		PLOT_LOC_X *= (double)width / WINDOW_WIDTH;
-		PLOT_LOC_Y *= (double)width / WINDOW_WIDTH;
+		if (width > height)
+		{
+			PLOT_LOC_X *= (double)height / WINDOW_HEIGHT;
+			PLOT_LOC_Y *= (double)height / WINDOW_HEIGHT;
+		}
+		else
+		{
+			PLOT_LOC_X *= (double)width / WINDOW_WIDTH;
+			PLOT_LOC_Y *= (double)width / WINDOW_WIDTH;
+		}
 	}
-	
+
 	WINDOW_WIDTH = width;
 	WINDOW_HEIGHT = height;
 }
